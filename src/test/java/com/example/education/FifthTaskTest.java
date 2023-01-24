@@ -10,8 +10,7 @@ public class FifthTaskTest {
         Notebook notebook = new Notebook();
         Note note = new Note("Test note");
         notebook.addNote(note);
-        assertEquals(1, notebook.getAllNotes().size());
-        assertEquals("Test note", notebook.getAllNotes().get(0).getContent());
+        assertEquals("Test note", notebook.getAllNotes()[0].getContent());
     }
 
     @Test
@@ -21,8 +20,7 @@ public class FifthTaskTest {
         notebook.addNote(note);
         note = new Note("Edited test note");
         notebook.editNote(0, note);
-        assertEquals(1, notebook.getAllNotes().size());
-        assertEquals("Edited test note", notebook.getAllNotes().get(0).getContent());
+        assertEquals("Edited test note", notebook.getAllNotes()[0].getContent());
     }
 
     @Test
@@ -32,8 +30,7 @@ public class FifthTaskTest {
         Note note2 = new Note("Test note 2");
         notebook.addNote(note1);
         notebook.addNote(note2);
-        assertEquals(2, notebook.getAllNotes().size());
-        assertEquals("Test note 1", notebook.getAllNotes().get(0).getContent());
-        assertEquals("Test note 2", notebook.getAllNotes().get(1).getContent());
+        assertEquals("Test note 1", notebook.getAllNotes()[0].getContent());
+        assertEquals("Test note 2", notebook.getAllNotes()[1].getContent());
     }
 }
