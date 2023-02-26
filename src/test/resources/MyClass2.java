@@ -1,3 +1,4 @@
+// Класс только для того чтобы его спарсить
 public class MyClass2 {
     private static int count = 0;
 

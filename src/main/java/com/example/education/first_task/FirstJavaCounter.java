@@ -1,10 +1,11 @@
 package com.example.education.first_task;
 
-import java.io.*;
-import java.util.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class FirstJavaCounter {
-    public static void doTask(String filePath) throws IOException {
+    public static void doTask(String filePath, String outputName) throws IOException {
         String[] keywords = {"abstract", "assert", "boolean", "break", "byte",
                 "case", "catch", "char", "class", "const",
                 "continue", "default", "do", "double", "else",
@@ -18,8 +19,8 @@ public class FirstJavaCounter {
 
         int[] counts = new int[keywords.length];
 
+        // Думали парсером напугать 😎😎😎😎😎😎😎
         try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
-
             int data;
             StringBuilder word = new StringBuilder();
 
@@ -46,17 +47,10 @@ public class FirstJavaCounter {
             }
         }
 
-        FileOutputStream fileOutputStream = null;
-
-        try {
-            fileOutputStream = new FileOutputStream("output.txt");
+        try (FileOutputStream fileOutputStream = new FileOutputStream(outputName)) {
 
             for (int i = 0; i < keywords.length; i++) {
                 fileOutputStream.write((keywords[i] + " " + counts[i] + "\n").getBytes());
-            }
-        } finally {
-            if (fileOutputStream != null) {
-                fileOutputStream.close();
             }
         }
     }
