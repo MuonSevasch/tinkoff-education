@@ -11,7 +11,6 @@ public class Stationery {
         this.price = price;
     }
 
-    // Перегруженный метод установки значения для поля price
     public void setPrice(int price) {
         this.price = (double) price;
     }

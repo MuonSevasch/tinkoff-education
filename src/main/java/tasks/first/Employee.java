@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Employee {
-    private String name;
-    private List<Stationery> stationeries;
+    private final String name;
+    private final List<Stationery> stationeries;
 
     public Employee(String name) {
         this.name = name;
@@ -14,7 +14,7 @@ public class Employee {
     }
 
     public void addStationery(Stationery stationery) {
-        stationeries.add(stationery);
+        stationeries.add(new Stationery(stationery.getName(), stationery.getPrice())); //не забыл, не забыл)))
     }
 
     public double getTotalStationeryCost() {
