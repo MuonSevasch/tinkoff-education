@@ -1,6 +1,9 @@
 package tasks.second;
 
-public abstract class Stationery {
+import lombok.ToString;
+
+@ToString
+public abstract class Stationery implements Cloneable{
     private String name;
     private double price;
 
@@ -15,5 +18,9 @@ public abstract class Stationery {
 
     public double getPrice() {
         return price;
+    }
+    @Override
+    public Stationery clone() throws CloneNotSupportedException {
+        return (Stationery) super.clone();
     }
 }

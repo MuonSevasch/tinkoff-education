@@ -1,5 +1,8 @@
 package tasks.second;
 
+import lombok.ToString;
+
+
 public class Notebook extends Stationery {
     private int numberOfPages;
 

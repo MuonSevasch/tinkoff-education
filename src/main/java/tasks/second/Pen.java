@@ -1,5 +1,7 @@
 package tasks.second;
 
+import lombok.ToString;
+
 public class Pen extends Stationery {
     private String color;
 
