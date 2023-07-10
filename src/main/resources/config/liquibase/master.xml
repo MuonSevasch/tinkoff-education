@@ -1,0 +1,84 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <changeSet id="createTables" author="your_name">
+    <createTable tableName="clients">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="full_name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="city" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createTable tableName="cars">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="license_plate" type="varchar(20)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="model" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createTable tableName="car_brands">
+      <column name="id" type="bigint" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="brand_name" type="varchar(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <createTable tableName="client_cars">
+      <column name="client_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+      <column name="car_id" type="bigint">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+    <addForeignKeyConstraint baseTableName="client_cars" baseColumnNames="client_id"
+      constraintName="fk_client_cars_clients" referencedTableName="clients"
+      referencedColumnNames="id"/>
+    <addForeignKeyConstraint baseTableName="client_cars" baseColumnNames="car_id"
+      constraintName="fk_client_cars_cars" referencedTableName="cars"
+      referencedColumnNames="id"/>
+    <addPrimaryKey tableName="client_cars" columnNames="client_id, car_id"/>
+
+    <createIndex tableName="clients" indexName="idx_full_name" unique="true">
+      <column name="full_name"/>
+    </createIndex>
+
+    <createIndex tableName="cars" indexName="idx_license_plate" unique="true">
+      <column name="license_plate"/>
+    </createIndex>
+
+    <createIndex tableName="car_brands" indexName="idx_brand_name" unique="true">
+      <column name="brand_name"/>
+    </createIndex>
+  </changeSet>
+
+  <changeSet id="insertData" author="your_name">
+    <insert tableName="clients">
+      <column name="full_name" value="John Doe"/>
+      <column name="city" value="New York"/>
+    </insert>
+    <insert tableName="cars">
+      <column name="license_plate" value="ABC123"/>
+      <column name="model" value="Sedan"/>
+    </insert>
+    <insert tableName="car_brands">
+      <column name="brand_name" value="Toyota"/>
+    </insert>
+    <insert tableName="client_cars">
+      <column name="client_id" valueNumeric="1"/>
+      <column name="car_id" valueNumeric="1"/>
+    </insert>
+  </changeSet>
+
+</databaseChangeLog>
