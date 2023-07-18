@@ -35,18 +35,38 @@ public class JdbcExample {
     }
 
     static void updateClient(Connection connection, int id, String fullName, String city) throws SQLException {
-        String updateQuery = "UPDATE clients SET full_name = ?, city = ? WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(updateQuery)) {
-            statement.setString(1, fullName);
-            statement.setString(2, city);
-            statement.setInt(3, id);
-            statement.executeUpdate();
+        String selectVersionQuery = "SELECT version FROM clients WHERE id = ?";
+        String updateQuery = "UPDATE clients SET full_name = ?, city = ?, version = version + 1 WHERE id = ? AND version = ?";
+
+        try (PreparedStatement selectStatement = connection.prepareStatement(selectVersionQuery);
+            PreparedStatement updateStatement = connection.prepareStatement(updateQuery)) {
+
+            // Получение текущего значения версии из базы данных
+            selectStatement.setInt(1, id);
+            try (ResultSet resultSet = selectStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    long currentVersion = resultSet.getLong("version");
+
+                    // Обновление записи с учетом текущего значения версии
+                    updateStatement.setString(1, fullName);
+                    updateStatement.setString(2, city);
+                    updateStatement.setInt(3, id);
+                    updateStatement.setLong(4, currentVersion);
+
+                    int rowsAffected = updateStatement.executeUpdate();
+
+                    if (rowsAffected == 0) {
+                        throw new RuntimeException("Client with id " + id + " has been updated by another process.");
+                    }
+                }
+            }
         }
     }
 
+
     static void deleteClient(Connection connection, int id) throws SQLException {
-        String deleteQuery = "DELETE FROM clients WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(deleteQuery)) {
+        String updateQuery = "UPDATE clients SET deleted = true WHERE id = ?";
+        try (PreparedStatement statement = connection.prepareStatement(updateQuery)) {
             statement.setInt(1, id);
             statement.executeUpdate();
         }
