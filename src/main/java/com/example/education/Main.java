@@ -5,6 +5,7 @@ import static com.example.education.JdbcExample.deleteClient;
 import static com.example.education.JdbcExample.getClientById;
 import static com.example.education.JdbcExample.updateClient;
 
+import com.example.education.domain.Client;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

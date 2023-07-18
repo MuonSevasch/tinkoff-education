@@ -1,5 +1,6 @@
 package com.example.education;
 
+import com.example.education.domain.Client;
 import java.sql.*;
 
 public class JdbcExample {
