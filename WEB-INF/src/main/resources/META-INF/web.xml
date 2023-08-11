@@ -4,8 +4,32 @@
     <servlet-name>CarServlet</servlet-name>
     <servlet-class>com.example.education.servlets.CarServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>FirstServlet</servlet-name>
+    <servlet-class>com.example.FirstServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SecondServlet</servlet-name>
+    <servlet-class>com.example.SecondServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>ThirdServlet</servlet-name>
+    <servlet-class>com.example.ThirdServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>CarServlet</servlet-name>
     <url-pattern>/api/cars/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>FirstServlet</servlet-name>
+    <url-pattern>/first</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SecondServlet</servlet-name>
+    <url-pattern>/second</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>ThirdServlet</servlet-name>
+    <url-pattern>/third</url-pattern>
   </servlet-mapping>
 </web-app>
