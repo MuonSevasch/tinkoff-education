@@ -1,11 +1,16 @@
-package com.example.education.domain;
+package com.tinkoff.education.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 import lombok.Data;
 
-@Entity
 @Table(name = "client_cars")
 @Data
+@Entity
 public class ClientCar {
     @EmbeddedId
     private ClientCarId id;

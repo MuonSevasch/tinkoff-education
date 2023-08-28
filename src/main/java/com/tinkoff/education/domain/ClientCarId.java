@@ -1,8 +1,9 @@
-package com.example.education.domain;
+package com.tinkoff.education.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
 import java.io.Serializable;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

@@ -1,6 +1,11 @@
-package com.example.education.domain;
+package com.tinkoff.education.domain;
 
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -16,6 +21,4 @@ public class CarBrand {
 
     @Column(name = "brand_name", nullable = false)
     private String brandName;
-
-    // Геттеры, сеттеры и конструкторы
 }

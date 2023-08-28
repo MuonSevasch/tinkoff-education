@@ -1,0 +1,115 @@
+databaseChangeLog:
+  - changeSet:
+      id: createTables
+      author: yourname
+      changes:
+        - createTable:
+            tableName: car_brands
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: brand_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: clients
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: full_name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: cars
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: license_plate
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: model
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+
+        - createTable:
+            tableName: client_cars
+            columns:
+              - column:
+                  name: client_id
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: car_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+            primaryKey:
+              columnNames: [client_id, car_id]
+
+            foreignKeyConstraints:
+              - baseTableName: clients
+                baseColumnNames: [id]
+                referencedTableName: client_cars
+                referencedColumnNames: [client_id]
+
+              - baseTableName: cars
+                baseColumnNames: [id]
+                referencedTableName: client_cars
+                referencedColumnNames: [car_id]
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - addAutoIncrement:
+                  tableName: users
+                  columnName: id
